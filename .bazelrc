@@ -13,6 +13,7 @@
 
 common --registry=https://raw.githubusercontent.com/eclipse-score/bazel_registry/main/
 common --registry=https://bcr.bazel.build
+build --define score_os=posix
 
 build --java_language_version=17
 build --tool_java_language_version=17
@@ -39,6 +40,7 @@ build:bl-x86_64-linux --config=bl_stub
 build:bl-x86_64-linux --config=bl_toolchain_common
 build:bl-x86_64-linux --platforms=@score_bazel_platforms//:x86_64-linux
 build:bl-x86_64-linux --extra_toolchains=@gcc_toolchain//:host_gcc_12
+build:bl-x86_64-linux --define score_os=posix
 test:bl-x86_64-linux --config=bl_common
 
 # Target configuration for CPU:x86-64|OS:QNX build (do not use it in case of system toolchains!)
@@ -46,4 +48,9 @@ build:bl-x86_64-qnx --config=bl_stub
 build:bl-x86_64-qnx --config=bl_toolchain_common
 build:bl-x86_64-qnx --platforms=@score_bazel_platforms//:x86_64-qnx
 build:bl-x86_64-qnx --extra_toolchains=@toolchains_qnx_qcc//:qcc_x86_64
+build:bl-x86_64-qnx --define score_os=qnx
 test:bl-x86_64-qnx --config=bl_common
+
+# Target configuration for ASP3 builds
+build:bl-asp3 --config=bl_stub
+build:bl-asp3 --define score_os=asp3

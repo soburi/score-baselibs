@@ -33,4 +33,12 @@ Summary
 **Type:** C++ Base Libraries
 
 
+Planning Documents
+------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   osal_asp3_plan
+
 

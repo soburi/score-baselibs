@@ -920,3 +920,41 @@ cc_library(
         "//conditions:default": [],
     }),
 )
+
+cc_library(
+    name = "score_os",
+    hdrs = glob(["interface/osal/**/*.hpp"]),
+    srcs = [
+        "osal/common/osal.cpp",
+    ] + select({
+        "//score/config:os_posix": [
+            "osal/posix/thread_posix.cpp",
+            "osal/posix/sync_posix.cpp",
+            "osal/posix/time_posix.cpp",
+            "osal/posix/io_posix.cpp",
+        ],
+        "//score/config:os_qnx": [
+            "osal/qnx/thread_qnx.cpp",
+            "osal/qnx/sync_qnx.cpp",
+            "osal/qnx/time_qnx.cpp",
+            "osal/qnx/io_qnx.cpp",
+        ],
+        "//score/config:os_asp3": [
+            "osal/asp3/config_asp3.hpp",
+            "osal/asp3/thread_asp3.cpp",
+            "osal/asp3/sync_asp3.cpp",
+            "osal/asp3/time_asp3.cpp",
+            "osal/asp3/io_asp3.cpp",
+        ],
+        "//conditions:default": [
+            "osal/posix/thread_posix.cpp",
+            "osal/posix/sync_posix.cpp",
+            "osal/posix/time_posix.cpp",
+            "osal/posix/io_posix.cpp",
+        ],
+    }),
+    features = COMPILER_WARNING_FEATURES,
+    include_prefix = "score/os",
+    strip_include_prefix = "interface/osal",
+    visibility = ["//visibility:public"],
+)
