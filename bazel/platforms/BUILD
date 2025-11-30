@@ -54,6 +54,13 @@ constraint_value(
     constraint_setting = ":compiler",
 )
 
+constraint_setting(name = "rtos")
+
+constraint_value(
+    name = "toppers_asp3",
+    constraint_setting = ":rtos",
+)
+
 platform(
     name = "wasm32",
     constraint_values = wasm32_constraints,
@@ -260,6 +267,15 @@ platform(
     ],
     parents = [
         "@swf_platforms//:arm64-qnx-adaptive",
+    ],
+)
+
+platform(
+    name = "arm64-toppers_asp3",
+    constraint_values = [
+        "@platforms//cpu:arm64",
+        "@platforms//os:none",
+        ":toppers_asp3",
     ],
 )
 

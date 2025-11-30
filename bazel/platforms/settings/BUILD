@@ -114,6 +114,15 @@ config_setting(
 )
 
 config_setting(
+    name = "arm64-toppers_asp3",
+    constraint_values = [
+        "@platforms//cpu:arm64",
+        "@platforms//os:none",
+        "//bazel/platforms:toppers_asp3",
+    ],
+)
+
+config_setting(
     name = "x86_64-linux",
     constraint_values = [
         "@platforms//cpu:x86_64",
