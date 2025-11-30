@@ -2,5 +2,9 @@
   {
     "version": "main",
     "url": "https://soburi.github.io/score-baselibs/main/"
+  },
+  {
+    "version": "pr-2",
+    "url": "https://soburi.github.io/score-baselibs/pr-2/"
   }
 ]
